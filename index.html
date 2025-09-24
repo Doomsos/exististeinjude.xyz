@@ -2,9 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Mango</title>
+  <title>w video</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: black;
+    }
+    video {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  </style>
 </head>
 <body>
-  mango
+  <video id="video" autoplay playsinline>
+    <source src="JkFXNWOn.mov" type="video/quicktime">
+    Your browser does not support MOV playback.
+  </video>
+
+  <script>
+    const video = document.getElementById("video");
+
+    video.addEventListener("canplay", () => {
+      if (video.requestFullscreen) {
+        video.requestFullscreen();
+      } else if (video.webkitRequestFullscreen) {
+        video.webkitRequestFullscreen();
+      } else if (video.msRequestFullscreen) {
+        video.msRequestFullscreen();
+      }
+      video.play().catch(err => {
+        console.log("Autoplay with sound blocked:", err);
+      });
+    });
+  </script>
 </body>
 </html>
